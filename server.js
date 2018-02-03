@@ -19,7 +19,9 @@ let db = require("./models"); // Sequelize Models
 let app = express();
 
 /////////////////////////////////////////////// /* Routes */ //////////////////////////////////////////////////////////
-app.use(routes); // Add routes, both API and View
+//app.use(routes); // Add routes, both API and View
+app.use(app.router);
+routes.initialize(app);
 
 /////////////////////////////////////////////// /* Express Middleware */ //////////////////////////////////////////////////////////
 app.use(bodyParser.urlencoded({extended: true})); // Use body-parser for handling form submissions
