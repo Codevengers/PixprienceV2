@@ -5,7 +5,6 @@
 /////////////////////////////////////////////// /* Imports */ //////////////////////////////////////////////////////////
 const express = require('express'); // Server
 const bodyParser = require ('body-parser'); // JSON Middleware
-const logger = require('morgan'); // REST Logger
 const mongoose = require('mongoose'); // MongoDB ORM
 
 
