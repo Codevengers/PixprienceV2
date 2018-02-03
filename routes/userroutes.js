@@ -2,10 +2,11 @@
 /*jslint es6 */
 "use strict";
 
-const Routes = require('express').Router();
-
-Router.get('/',(req,res)=>{
-
-})
-
-module.exports = Router;
+//const Routes = require('express').Router();
+//
+//Router.get('/',(req,res)=>{
+//
+//})
+//
+//module.exports = Router;
+//module.exports = router;
