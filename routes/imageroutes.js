@@ -7,3 +7,4 @@ import * as ImageController from "../controllers/imagecontroller";
 const router = new Router();
 
 export default router;
+module.exports = Router;
