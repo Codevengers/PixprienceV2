@@ -6,4 +6,4 @@ const router = require("express").Router();
 //router.use("/placeHolderRoute", yourController); // Reference New Routes Here. Create a New File for Each Route
 
 /////////////////////////////////////////////// /* Exports */ //////////////////////////////////////////////////////////
-//module.exports = router;
+module.exports = router;
