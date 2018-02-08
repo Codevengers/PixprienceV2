@@ -58,6 +58,7 @@ class App extends Component {
       this.setState({ authenticated: Auth.isUserAuthenticated() })
     }
 
+  
     render() {
         return (
             <Router>
