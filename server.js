@@ -74,6 +74,19 @@ app.post("/api/upload", function(req, res) {
   res.json({name: 'tom'})
 });
 
+app.get("/api/images", function(req, res) {
+  db.Image.find({}, function(err, found) {
+    // Log any errors if the server encounters one
+    if (err) {
+      console.log(err);
+    }
+    // Otherwise, send the result of this query to the browser
+    else {
+      res.json({"found":"x"});
+    }
+  });
+});
+
 
 
 /////////////////////////////////////////////// /* Start Server */ //////////////////////////////////////////////////////////

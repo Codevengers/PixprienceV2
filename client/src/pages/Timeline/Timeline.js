@@ -5,6 +5,7 @@ import Pixupload from "../../components/Upload/Pixuploader"
 import UploadModal from "../../components/UploadModal/UploadModal"
 import API from '../../utils/API.js'
 import TimelineImage from  '../../components/TimelineImage'
+import axios from "axios";
 
 class Timeline extends Component {
 
@@ -12,13 +13,14 @@ class Timeline extends Component {
     super();
 
     this.state = {
-      images: []
+      Community_images: [],
+      Timeline_images: []
     }
-
   } // End of Constructor
 
   componentWillMount() {
     this.fetchCommunityImages();
+    this.fetchTimelineImages();
   }
 
   fetchCommunityImages() { // Function to Fetch Community Images
@@ -31,8 +33,25 @@ class Timeline extends Component {
     console.log(fetchedimages)
 
     this.setState(prevState => ({
-      images: [...prevState].concat(fetchedimages)
+      Community_images: [...prevState].concat(fetchedimages)
     }), () => console.log(this.state))
+  }
+
+  fetchTimelineImages() { // Function to Fetch Timeline Images
+
+    let fetchedimages = [];
+
+    axios.get('http://localhost:8080/api/images')
+        .then(function(response) {
+          console.log(response);
+          this.setState(prevState => ({
+              Timeline_images: [...prevState].concat(fetchedimages)
+          }), () => console.log(this.state))
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
   render() {
@@ -66,7 +85,7 @@ class Timeline extends Component {
           <div className="row">
             <div className="carousel" id="imageCarousel">
 
-             { this.state.images.map((imageLink)  =>   <a className="carousel-item"><TimelineImage  image={imageLink} /></a>)}
+             { this.state.Timeline_images.map((base64_image) => <a className="carousel-item"><TimelineImage  base64_image={base64_image} /></a>)}
             
           </div>
         </div>
@@ -77,7 +96,6 @@ class Timeline extends Component {
     </div>
     </div>
     );
-
   }
 }
 
