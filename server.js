@@ -24,16 +24,10 @@ const mongoose = require('mongoose'); // MongoDB ORM
 mongoose.Promise = global.Promise; // Set up promises with mongoose
 const mongooseConnection = mongoose.connection;
 const db = require("./models"); // Sequelize Models
+const mongoURI = process.env.MONGODB_URI || "mongodb://test:test@ds123718.mlab.com:23718/heroku_0g1bl4gg"
 
-
-
-mongoose.connect( // Connect to the Mongo DB  Use this after Project 3 Completion. mongodb://heroku_fq360rd6:1cbk0mc9u31mqeutipesfj0ur2@ds229458.mlab.com:29458/heroku_fq360rd6
-  process.env.MONGODB_URI ||"mongodb://heroku_fq360rd6:1cbk0mc9u31mqeutipesfj0ur2@ds229458.mlab.com:29458/heroku_fq360rd6",
-
-  {
-    useMongoClient: true
-  }
-);
+// Connect to the Mongo DB  Use this after Project 3 Completion. mongodb://heroku_fq360rd6:1cbk0mc9u31mqeutipesfj0ur2@ds229458.mlab.com:29458/heroku_fq360rd6
+mongoose.connect(mongoURI);
 
 mongooseConnection.on("error", console.error.bind(console, "connection error:"));
 
@@ -82,7 +76,7 @@ app.get("/api/images", function(req, res) {
     }
     // Otherwise, send the result of this query to the browser
     else {
-      res.json({"found":"x"});
+      res.json(found);
     }
   });
 });

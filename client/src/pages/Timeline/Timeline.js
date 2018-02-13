@@ -13,9 +13,11 @@ class Timeline extends Component {
     super();
 
     this.state = {
-      Community_images: [],
-      Timeline_images: []
+      community_images: [],
+      timeline_images: []
     }
+    this.fetchCommunityImages = this.fetchCommunityImages.bind(this);
+    this.fetchTimelineImages = this.fetchTimelineImages.bind(this);
   } // End of Constructor
 
   componentWillMount() {
@@ -30,29 +32,39 @@ class Timeline extends Component {
     for (let key in API.imageData) { // Get Images from API Ajax Call and Store into Variable fetchedImages
       fetchedimages.push(API.imageData[key]);
     }
-    console.log(fetchedimages)
 
     this.setState(prevState => ({
-      Community_images: [...prevState].concat(fetchedimages)
+      community_images: [...prevState.community_images].concat(fetchedimages)
     }), () => console.log(this.state))
   }
 
   fetchTimelineImages() { // Function to Fetch Timeline Images
-
-    let fetchedimages = [];
-
+    console.log(`THIS: ${this}`)
     axios.get('http://localhost:8080/api/images')
-        .then(function(response) {
-          console.log(response);
-          this.setState(prevState => ({
-              Timeline_images: [...prevState].concat(fetchedimages)
-          }), () => console.log(this.state))
+        .then( response => {
+          console.log(response)
+          this.setState({
+            timeline_images: response.data
+          });
 
+          console.log(this.state.timeline_images)
+          
+          // this.updateImages(response);
         })
         .catch(function (error) {
           console.log(error);
         });
   }
+
+  // updateImages(response) {
+  //   this.setState({
+  //     Timeline_images: this.state.Timeline_images
+  //   });
+  //   console.log(response)
+  //   this.setState(prevState => ({
+  //             Timeline_images: [...prevState.Timeline_images,response.data]
+  //         }), () => console.log(this.state))
+  // }
 
   render() {
     return (
@@ -77,23 +89,14 @@ class Timeline extends Component {
         <div className="container">
           <br/><br/>
           <h1 className="header center blue-grey-text">Welcome to your timeline</h1>
+          { this.state.timeline_images.map((base64_image) => <a className="carousel-item"> <img src={base64_image.image} style={{width: 304, height: 228}}  alt="Image" /> </a>)}         
         </div>
       </div>
-      <div className="container">
-        <div className="section">
-          {/* Icon Section */}
-          <div className="row">
-            <div className="carousel" id="imageCarousel">
-
-             { this.state.Timeline_images.map((base64_image) => <a className="carousel-item"><TimelineImage  base64_image={base64_image} /></a>)}
-            
-          </div>
-        </div>
-        <br/><br/>
-        <div className="section"></div>
-      </div>
-
+    
+    <div className="carousel" id="imageCarousel">   
+      
     </div>
+    
     </div>
     );
   }

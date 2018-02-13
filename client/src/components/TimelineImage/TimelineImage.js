@@ -11,4 +11,3 @@ export default class TimelineImage extends React.Component{
     }
 }
 
-// export default TimelineImage;
