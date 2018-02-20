@@ -12,8 +12,6 @@ class About extends React.Component {
     teamMember
   };
 
-
-
   render() {
     return (
     <Fragment>

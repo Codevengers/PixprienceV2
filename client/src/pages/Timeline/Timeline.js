@@ -8,6 +8,7 @@ import TimelineImage from  '../../components/TimelineImage'
 import Auth from '../../modules/Auth';
 import NavLogin from '../../components/NavBar';
 import axios from "axios";
+import CarouselDates from "../../components/CarouselDates"
 
 class Timeline extends Component {
 
@@ -48,7 +49,7 @@ class Timeline extends Component {
   });
   xhr.send();
 
-  console.log(window.localStorage.getItem('userEmail')); // Code to Get userEmail so that you can query the backed by email ID
+  // console.log(window.localStorage.getItem('userEmail')); // Code to Get userEmail so that you can query the backed by email ID
 }
 /////////////////////////////////////////////// /* Fetching Images */ //////////////////////////////////////////////////////////
 
@@ -67,7 +68,6 @@ class Timeline extends Component {
 
   fetchTimelineImages() { // Function to Fetch Timeline Images
 
-
     let clientEmail = localStorage.getItem('userEmail');
     // axios.get('/test/images', {params: { email: clientEmail }})
     axios.get('/test/images')
@@ -78,12 +78,12 @@ class Timeline extends Component {
           });
 
           this.setState({
-            asyncImages: this.state.timeline_images.map(base64_image => base64_image.image) // Replace AysncImages Null with an Array of Images taken from
+            asyncImages: this.state.timeline_images.map(base64_image => {
+              return {image: base64_image.image}
+              // , date: base64_image.dateAdded
+            })
           })
-
           // console.log(this.state.timeline_images)
-
-
         })
         .catch(function (error) {
           console.log(error);
@@ -93,8 +93,14 @@ class Timeline extends Component {
   /////////////////////////////////////////////// /* Render */ //////////////////////////////////////////////////////////
 
   render() {
-    return (
+    if (this.state.asyncImages) {
+      let dateLabels = this.state.asyncImages.map((image, index) => {
+        return (<CarouselDates date={image.date} key={index}/>)
+      })
+      console.log("Date Labels: ",dateLabels)
+    }
 
+    return (
       <div>
       <NavLogin/>
       <nav className="teal accent-4" role="navigation">
@@ -119,8 +125,7 @@ class Timeline extends Component {
         </div>
       </div>
       {/* Condition for Rendering Async Carousel Images  */}
-     {this.state.asyncImages? (<Carousel images={this.state.asyncImages}/>) : (<div> Carousel is Loading </div>)}
-
+      {this.state.asyncImages ? (<Carousel children={this.state.asyncImages.date} images={this.state.asyncImages.image}/>) : (<div> Carousel is Loading </div>)}
     </div>
     );
   }
