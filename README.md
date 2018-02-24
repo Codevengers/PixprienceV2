@@ -40,8 +40,9 @@ Now go to your browser, and start uploading photos!!
 | ------------- | ------------- |
 | [Passport] |Allows users to sign up or sign in using their email! |
 | [MongoDB] | Allows us to store our user and photo data |
-| [Materialize]| Was used for the modals |
-| [Particle Animations] | About page and community page background animations |
+| [Materialize]| Was used for the modals and the carousels|
+| [Particle.js] | About page background animations |
+| [HTML5 Canvas] |  Login page, Community page and Timeline backgrounds |
 | [SVG] | Our Logo! |
 | [React.js] | JavaScript framework| 
 
