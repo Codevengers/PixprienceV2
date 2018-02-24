@@ -18,6 +18,7 @@ If you would like to run this application locally, clone this repo. Go to comman
 ```
 git clone https://github.com/Codevengers/PixprienceV2.git
 ```
+
 You will need to install the modules you need. Simply go to your command line and type in: 
 ```
 yarn install
@@ -32,6 +33,7 @@ yarn start
 ```
 Now go to your browser, and start uploading photos!! 
 
+
 ## Technologies
 
 | Tool   | Purpose|
@@ -44,6 +46,7 @@ Now go to your browser, and start uploading photos!!
 | [React.js] | JavaScript framework| 
 
 
+
 ## Future Updates
 
 1. Allow users to log in through facebook and twitter
@@ -51,3 +54,4 @@ Now go to your browser, and start uploading photos!!
 3. Expand this smart search to accept voice input as well as text input
 4. Extraction of more data from photos using google vision 
 5. Allow users to take photos from the mobile site instead of ruploading
+
