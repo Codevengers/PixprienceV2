@@ -53,5 +53,5 @@ Now go to your browser, and start uploading photos!!
 2. Create a smart search where users can ask the application complex questions like "where did I eat last week"
 3. Expand this smart search to accept voice input as well as text input
 4. Extraction of more data from photos using google vision 
-5. Allow users to take photos from the mobile site instead of ruploading
+5. Allow users to take photos from the mobile site instead of reuploading with the web app
 
